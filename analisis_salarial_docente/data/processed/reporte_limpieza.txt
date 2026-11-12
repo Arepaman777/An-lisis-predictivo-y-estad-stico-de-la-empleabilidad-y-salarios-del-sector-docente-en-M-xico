@@ -1,0 +1,203 @@
+==================================================
+          REPORTE DE LIMPIEZA DE DATOS           
+==================================================
+Archivo de origen: ../data/processed/docentes_enoe_optimizado.csv
+Filas iniciales: 6602
+Columnas iniciales: 280
+
+[1] Columnas renombradas/normalizadas: 0
+[2] Filas totalmente vacías eliminadas: 0
+[3] Filas duplicadas (violación de Llave Primaria) eliminadas: 169
+[4] Estandarización de espacios vacíos a nulos estadísticos (NaN) para bases de datos.
+
+--- Tratamiento de Valores Faltantes (NaN) ---
+  * NOTA: Por tratarse de datos censales (ENOE) para Machine Learning y MySQL,
+    se preservan los valores nulos (NaN) para evitar sesgos estadísticos (mediana)
+    y evitar errores de tipos de datos al exportar a la base de datos relacional.
+
+  - Columna 'cve_loc': 6433 valores nulos (Se mantienen como NULL).
+  - Columna 'cve_mun_x': 32 valores nulos (Se mantienen como NULL).
+  - Columna 'est_d_men': 353 valores nulos (Se mantienen como NULL).
+  - Columna 't_loc_men': 353 valores nulos (Se mantienen como NULL).
+  - Columna 'par_c': 1 valores nulos (Se mantienen como NULL).
+  - Columna 'sex': 1 valores nulos (Se mantienen como NULL).
+  - Columna 'eda_x': 1 valores nulos (Se mantienen como NULL).
+  - Columna 'nac_dia': 1 valores nulos (Se mantienen como NULL).
+  - Columna 'nac_mes': 1 valores nulos (Se mantienen como NULL).
+  - Columna 'nac_anio': 1 valores nulos (Se mantienen como NULL).
+  - Columna 'l_nac_c': 1 valores nulos (Se mantienen como NULL).
+  - Columna 'cs_p12': 3 valores nulos (Se mantienen como NULL).
+  - Columna 'cs_p13_1': 3 valores nulos (Se mantienen como NULL).
+  - Columna 'cs_p13_2': 3 valores nulos (Se mantienen como NULL).
+  - Columna 'cs_p14_c': 313 valores nulos (Se mantienen como NULL).
+  - Columna 'cs_p15': 1755 valores nulos (Se mantienen como NULL).
+  - Columna 'cs_p16': 313 valores nulos (Se mantienen como NULL).
+  - Columna 'cs_p17': 3 valores nulos (Se mantienen como NULL).
+  - Columna 'n_hij': 2226 valores nulos (Se mantienen como NULL).
+  - Columna 'e_con': 6 valores nulos (Se mantienen como NULL).
+  - Columna 'cs_p20a_1': 1 valores nulos (Se mantienen como NULL).
+  - Columna 'cs_p20a_c': 1 valores nulos (Se mantienen como NULL).
+  - Columna 'cs_p20b_1': 2 valores nulos (Se mantienen como NULL).
+  - Columna 'cs_p20b_c': 2 valores nulos (Se mantienen como NULL).
+  - Columna 'cs_p20c_1': 6392 valores nulos (Se mantienen como NULL).
+  - Columna 'cs_ad_mot': 6432 valores nulos (Se mantienen como NULL).
+  - Columna 'cs_p21_des': 6433 valores nulos (Se mantienen como NULL).
+  - Columna 'cs_ad_des': 6432 valores nulos (Se mantienen como NULL).
+  - Columna 'cs_nr_mot': 6368 valores nulos (Se mantienen como NULL).
+  - Columna 'cs_p23_des': 6430 valores nulos (Se mantienen como NULL).
+  - Columna 'cs_nr_ori': 6398 valores nulos (Se mantienen como NULL).
+  - Columna 'p1a1': 6425 valores nulos (Se mantienen como NULL).
+  - Columna 'p1a2': 6427 valores nulos (Se mantienen como NULL).
+  - Columna 'p1a3': 5520 valores nulos (Se mantienen como NULL).
+  - Columna 'p1b': 5520 valores nulos (Se mantienen como NULL).
+  - Columna 'p1c': 5520 valores nulos (Se mantienen como NULL).
+  - Columna 'p1d': 5605 valores nulos (Se mantienen como NULL).
+  - Columna 'p1e': 6416 valores nulos (Se mantienen como NULL).
+  - Columna 'p2_1': 6433 valores nulos (Se mantienen como NULL).
+  - Columna 'p2_2': 6433 valores nulos (Se mantienen como NULL).
+  - Columna 'p2_3': 6433 valores nulos (Se mantienen como NULL).
+  - Columna 'p2_4': 6433 valores nulos (Se mantienen como NULL).
+  - Columna 'p2_9': 6433 valores nulos (Se mantienen como NULL).
+  - Columna 'p2a_dia': 6433 valores nulos (Se mantienen como NULL).
+  - Columna 'p2a_sem': 6433 valores nulos (Se mantienen como NULL).
+  - Columna 'p2a_mes': 6433 valores nulos (Se mantienen como NULL).
+  - Columna 'p2a_anio': 6433 valores nulos (Se mantienen como NULL).
+  - Columna 'p2b_dia': 6433 valores nulos (Se mantienen como NULL).
+  - Columna 'p2b_sem': 6433 valores nulos (Se mantienen como NULL).
+  - Columna 'p2b_mes': 6433 valores nulos (Se mantienen como NULL).
+  - Columna 'p2b_anio': 6433 valores nulos (Se mantienen como NULL).
+  - Columna 'p2b': 6433 valores nulos (Se mantienen como NULL).
+  - Columna 'p2c': 6433 valores nulos (Se mantienen como NULL).
+  - Columna 'p2d1': 6433 valores nulos (Se mantienen como NULL).
+  - Columna 'p2d2': 6433 valores nulos (Se mantienen como NULL).
+  - Columna 'p2d3': 6433 valores nulos (Se mantienen como NULL).
+  - Columna 'p2d4': 6433 valores nulos (Se mantienen como NULL).
+  - Columna 'p2d5': 6433 valores nulos (Se mantienen como NULL).
+  - Columna 'p2d6': 6433 valores nulos (Se mantienen como NULL).
+  - Columna 'p2d7': 6433 valores nulos (Se mantienen como NULL).
+  - Columna 'p2d8': 6433 valores nulos (Se mantienen como NULL).
+  - Columna 'p2d9': 6433 valores nulos (Se mantienen como NULL).
+  - Columna 'p2d10': 6433 valores nulos (Se mantienen como NULL).
+  - Columna 'p2d11': 6433 valores nulos (Se mantienen como NULL).
+  - Columna 'p2d99': 6433 valores nulos (Se mantienen como NULL).
+  - Columna 'p2e': 6433 valores nulos (Se mantienen como NULL).
+  - Columna 'p2f': 6433 valores nulos (Se mantienen como NULL).
+  - Columna 'p2g1': 6433 valores nulos (Se mantienen como NULL).
+  - Columna 'p2g2': 6433 valores nulos (Se mantienen como NULL).
+  - Columna 'p2h1': 6433 valores nulos (Se mantienen como NULL).
+  - Columna 'p2h2': 6433 valores nulos (Se mantienen como NULL).
+  - Columna 'p2h3': 6433 valores nulos (Se mantienen como NULL).
+  - Columna 'p2h4': 6433 valores nulos (Se mantienen como NULL).
+  - Columna 'p2h9': 6433 valores nulos (Se mantienen como NULL).
+  - Columna 'p2i': 6433 valores nulos (Se mantienen como NULL).
+  - Columna 'p2j': 6433 valores nulos (Se mantienen como NULL).
+  - Columna 'p2k_anio': 6433 valores nulos (Se mantienen como NULL).
+  - Columna 'p2k_mes': 6433 valores nulos (Se mantienen como NULL).
+  - Columna 'p2k': 6433 valores nulos (Se mantienen como NULL).
+  - Columna 'p3b': 6406 valores nulos (Se mantienen como NULL).
+  - Columna 'p3c1': 6432 valores nulos (Se mantienen como NULL).
+  - Columna 'p3c2': 6433 valores nulos (Se mantienen como NULL).
+  - Columna 'p3c3': 6406 valores nulos (Se mantienen como NULL).
+  - Columna 'p3c4': 6433 valores nulos (Se mantienen como NULL).
+  - Columna 'p3c9': 6433 valores nulos (Se mantienen como NULL).
+  - Columna 'p3d': 6406 valores nulos (Se mantienen como NULL).
+  - Columna 'p3e': 6430 valores nulos (Se mantienen como NULL).
+  - Columna 'p3f1': 6430 valores nulos (Se mantienen como NULL).
+  - Columna 'p3f2': 6433 valores nulos (Se mantienen como NULL).
+  - Columna 'p3g1_1': 6430 valores nulos (Se mantienen como NULL).
+  - Columna 'p3g1_2': 6430 valores nulos (Se mantienen como NULL).
+  - Columna 'p3g2_1': 6432 valores nulos (Se mantienen como NULL).
+  - Columna 'p3g2_2': 6432 valores nulos (Se mantienen como NULL).
+  - Columna 'p3g3_1': 6433 valores nulos (Se mantienen como NULL).
+  - Columna 'p3g3_2': 6433 valores nulos (Se mantienen como NULL).
+  - Columna 'p3g4_1': 6433 valores nulos (Se mantienen como NULL).
+  - Columna 'p3g4_2': 6433 valores nulos (Se mantienen como NULL).
+  - Columna 'p3g9': 6433 valores nulos (Se mantienen como NULL).
+  - Columna 'p3g_tot': 6430 valores nulos (Se mantienen como NULL).
+  - Columna 'p3h': 27 valores nulos (Se mantienen como NULL).
+  - Columna 'p3i': 44 valores nulos (Se mantienen como NULL).
+  - Columna 'p3j1': 283 valores nulos (Se mantienen como NULL).
+  - Columna 'p3j2': 5500 valores nulos (Se mantienen como NULL).
+  - Columna 'p3k1': 565 valores nulos (Se mantienen como NULL).
+  - Columna 'p3k2': 684 valores nulos (Se mantienen como NULL).
+  - Columna 'p3k3': 6267 valores nulos (Se mantienen como NULL).
+  - Columna 'p3k4': 6397 valores nulos (Se mantienen como NULL).
+  - Columna 'p3k5': 6029 valores nulos (Se mantienen como NULL).
+  - Columna 'p3k9': 6393 valores nulos (Se mantienen como NULL).
+  - Columna 'p3l': 27 valores nulos (Se mantienen como NULL).
+  - Columna 'p4_1': 132 valores nulos (Se mantienen como NULL).
+  - Columna 'p4_2': 132 valores nulos (Se mantienen como NULL).
+  - Columna 'p4_3': 6412 valores nulos (Se mantienen como NULL).
+  - Columna 'p4a_1': 3 valores nulos (Se mantienen como NULL).
+  - Columna 'p4b': 19 valores nulos (Se mantienen como NULL).
+  - Columna 'p4c': 6383 valores nulos (Se mantienen como NULL).
+  - Columna 'p4d1': 69 valores nulos (Se mantienen como NULL).
+  - Columna 'p4d2': 72 valores nulos (Se mantienen como NULL).
+  - Columna 'p4d3': 77 valores nulos (Se mantienen como NULL).
+  - Columna 'p4e': 6397 valores nulos (Se mantienen como NULL).
+  - Columna 'p4f': 6414 valores nulos (Se mantienen como NULL).
+  - Columna 'p4g': 6404 valores nulos (Se mantienen como NULL).
+  - Columna 'p4h': 6412 valores nulos (Se mantienen como NULL).
+  - Columna 'p4i': 6412 valores nulos (Se mantienen como NULL).
+  - Columna 'p4i_1': 6412 valores nulos (Se mantienen como NULL).
+  - Columna 'p5': 4 valores nulos (Se mantienen como NULL).
+  - Columna 'p5a': 6299 valores nulos (Se mantienen como NULL).
+  - Columna 'p5b_hlu': 933 valores nulos (Se mantienen como NULL).
+  - Columna 'p5b_mlu': 933 valores nulos (Se mantienen como NULL).
+  - Columna 'p5b_hma': 933 valores nulos (Se mantienen como NULL).
+  - Columna 'p5b_mma': 933 valores nulos (Se mantienen como NULL).
+  - Columna 'p5b_hmi': 933 valores nulos (Se mantienen como NULL).
+  - Columna 'p5b_mmi': 933 valores nulos (Se mantienen como NULL).
+  - Columna 'p5b_hju': 933 valores nulos (Se mantienen como NULL).
+  - Columna 'p5b_mju': 933 valores nulos (Se mantienen como NULL).
+  - Columna 'p5b_hvi': 933 valores nulos (Se mantienen como NULL).
+  - Columna 'p5b_mvi': 933 valores nulos (Se mantienen como NULL).
+  - Columna 'p5b_hsa': 933 valores nulos (Se mantienen como NULL).
+  - Columna 'p5b_msa': 933 valores nulos (Se mantienen como NULL).
+  - Columna 'p5b_hdo': 933 valores nulos (Se mantienen como NULL).
+  - Columna 'p5b_mdo': 933 valores nulos (Se mantienen como NULL).
+  - Columna 'p5b_thrs': 933 valores nulos (Se mantienen como NULL).
+  - Columna 'p5b_tdia': 933 valores nulos (Se mantienen como NULL).
+  - Columna 'p5c': 933 valores nulos (Se mantienen como NULL).
+  - Columna 'p5d1': 4861 valores nulos (Se mantienen como NULL).
+  - Columna 'p5d_hlu': 4996 valores nulos (Se mantienen como NULL).
+  - Columna 'p5d_mlu': 4996 valores nulos (Se mantienen como NULL).
+  - Columna 'p5d_hma': 4996 valores nulos (Se mantienen como NULL).
+  - Columna 'p5d_mma': 4996 valores nulos (Se mantienen como NULL).
+  - Columna 'p5d_hmi': 4996 valores nulos (Se mantienen como NULL).
+  - Columna 'p5d_mmi': 4996 valores nulos (Se mantienen como NULL).
+  - Columna 'p5d_hju': 4996 valores nulos (Se mantienen como NULL).
+  - Columna 'p5d_mju': 4996 valores nulos (Se mantienen como NULL).
+  - Columna 'p5d_hvi': 4996 valores nulos (Se mantienen como NULL).
+  - Columna 'p5d_mvi': 4996 valores nulos (Se mantienen como NULL).
+  - Columna 'p5d_hsa': 4996 valores nulos (Se mantienen como NULL).
+  - Columna 'p5d_msa': 4996 valores nulos (Se mantienen como NULL).
+  - Columna 'p5d_hdo': 4996 valores nulos (Se mantienen como NULL).
+  - Columna 'p5d_mdo': 4996 valores nulos (Se mantienen como NULL).
+  - Columna 'p5d_thrs': 4996 valores nulos (Se mantienen como NULL).
+  - Columna 'p5d_tdia': 4996 valores nulos (Se mantienen como NULL).
+  - Columna 'p5e': 5901 valores nulos (Se mantienen como NULL).
+  - Columna 'p5f1': 6423 valores nulos (Se mantienen como NULL).
+  - Columna 'p5f2': 6420 valores nulos (Se mantienen como NULL).
+  - Columna 'p5f3': 6420 valores nulos (Se mantienen como NULL).
+  - Columna 'p5f4': 6420 valores nulos (Se mantienen como NULL).
+  - Columna 'p5f5': 6419 valores nulos (Se mantienen como NULL).
+  - Columna 'p5f6': 6420 valores nulos (Se mantienen como NULL).
+  - Columna 'p5f7': 6430 valores nulos (Se mantienen como NULL).
+  - Columna 'p5f8': 6425 valores nulos (Se mantienen como NULL).
+  - Columna 'p5f9': 6421 valores nulos (Se mantienen como NULL).
+  - Columna 'p5f10': 6421 valores nulos (Se mantienen como NULL).
+  - Columna 'p5f11': 6421 valores nulos (Se mantienen como NULL).
+  - Columna 'p5f12': 6424 valores nulos (Se mantienen como NULL).
+  - Columna 'p5f13': 6412 valores nulos (Se mantienen como NULL).
+  - Columna 'p5f14': 280 valores nulos (Se mantienen como NULL).
+  - Columna 'p5f15': 6194 valores nulos (Se mantienen como NULL).
+  - Columna 'p5f99': 6432 valores nulos (Se mantienen como NULL).
+  - Columna 'cve_mun_y': 32 valores nulos (Se mantienen como NULL).
+
+==================================================
+                  RESUMEN FINAL                   
+==================================================
+Filas finales: 6433
+Columnas finales: 280
+Archivo limpio guardado en: ../data/processed/docentes_enoe_reporte_limpio.csv
