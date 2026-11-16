@@ -19,22 +19,30 @@ Este repositorio contiene el desarrollo completo del proyecto de análisis econo
 - Análisis econométrico de los retornos a la escolaridad, la experiencia laboral y evaluación de diferencias salariales.
 
 **`03_modelos_predictivos.ipynb`**
-- Implementación de modelos de machine learning no lineal con Random Forest Regressor (scikit-learn).
-- Partición de datos, entrenamiento, evaluación de desempeño ($R^2$, MAE) y extracción de la importancia de variables.
+- Entrenamiento y evaluación de un *benchmark* de múltiples modelos de Machine Learning (Regresión Ridge, Árboles de Decisión, Random Forest y Gradient Boosting con pérdida de Huber).
+- Análisis comparativo de métricas de desempeño ($R^2$ y MedAE).
 
-### Material de apoyo
+**`04_clustering_perfiles.ipynb`**
+- Segmentación no supervisada de perfiles docentes mediante algoritmos de agrupamiento (*K-Means* respaldado por el método del codo y coeficiente de silueta) y reducción dimensional (*PCA*).
+- Identificación de clústeres por carga horaria e inserción laboral.
 
-**`Análisis Predictivo Docente (8).pdf`**
-- Presentación teórica y preliminar antes de obtener resultados concretos.
+**`05_interpretabilidad_shap.ipynb`**
+- Explicabilidad avanzada del modelo predictivo mediante valores SHAP (*SHapley Additive exPlanations*).
+- Generación de gráficos de resumen (*beeswarm*), importancia absoluta promedio y descomposición individual de predicciones en pesos mexicanos (MXN).
+
+### Material de apoyo y Reportes
+**`Análisis Predictivo Docente (8).pdf`** - Presentación teórica y preliminar antes de obtener resultados concretos.
+**`Proyecto final_BD_Advance6.pdf`** — Reporte técnico final y científico integrando toda la arquitectura analítica.
 
 
 ## Objetivos
 
 Al revisar el proyecto se podrá:
-- Aplicar un pipeline completo de ciencia de datos sobre microdatos demográficos y laborales reales.   
-- Modelar retornos salariales utilizando tanto enfoques econométricos paramétricos (Mincer) como algoritmos de ensambles no lineales (Random Forest).   
+- Aplicar un *pipeline* completo de ciencia de datos sobre microdatos demográficos y laborales reales.   
+- Modelar retornos salariales utilizando tanto enfoques econométricos paramétricos (Mincer) como algoritmos de ensambles no lineales.   
 - Identificar y aislar de manera sistemática valores atípicos mediante técnicas de aprendizaje no supervisado.
-- Interpretar coeficientes y métricas de evaluación para la formulación de conclusiones basadas en evidencia.
+- Segmentar perfiles de la fuerza laboral docente con técnicas de agrupamiento.
+- Explicar las predicciones algorítmicas utilizando explicabilidad basada en teoría de juegos (SHAP).
 
 
 ## Datasets
@@ -47,10 +55,12 @@ Al revisar el proyecto se podrá:
 
 ## Orden recomendado de ejecución
 
-1. `00_cruce_enoe.ipynb` - Para unificar las fuentes de datos crudos.
-2. `01_limpieza_y_anomalias.ipynb` - Para depurar la muestra y eliminar anomalías estadísticas.
-3. `02_econometria_y_brecha_genero.ipynb` - Para el análisis econométrico e inferencial clásico.
-4. `03_modelos_predictivos.ipynb` - Para la experimentación con Machine Learning y extracción de importancias.
+1. `00_cruce_enoe.ipynb` — Unificación de las fuentes de datos crudos.
+2. `01_limpieza_y_anomalias.ipynb` — Depuración de la muestra y eliminación de anomalías con *Isolation Forest*.
+3. `02_econometria_y_brecha_genero.ipynb` — Análisis econométrico e inferencial clásico (Ecuación de Mincer).
+4. `03_modelos_predictivos.ipynb` — Experimentación con Machine Learning y *benchmark* de modelos.
+5. `04_clustering_perfiles.ipynb` — Segmentación de perfiles docentes (*K-Means* y *PCA*).
+6. `05_interpretabilidad_shap.ipynb` — Explicabilidad y análisis de impacto con valores SHAP.
 
 
 ## Requisitos previos
@@ -61,7 +71,8 @@ Al revisar el proyecto se podrá:
 
 ## Conceptos clave
 
-- **Ecuación de Mincer** - Modelo econométrico clásico para estimar el impacto de la educación y experiencia en los ingresos.   
-- **Isolation Forest** - Algoritmo de aislamiento para la detección de anomalías y atípicos multidimensionales.
-- **Random Forest Regressor** - Modelo de ensamble basado en árboles de decisión para capturar relaciones no lineales.
-- **Importancia de Variables** - Métrica de los modelos de árboles para jerarquizar los factores determinantes del salario.  
+- **Ecuación de Mincer** — Modelo econométrico clásico para estimar el impacto de la educación y experiencia en los ingresos.   
+- **Isolation Forest** — Algoritmo de aislamiento para la detección multidimensional de anomalías.
+- **Gradient Boosting & Random Forest** — Modelos predictivos avanzados para capturar relaciones no lineales y minimizar el error absoluto mediano.
+- **K-Means y PCA** — Técnicas de clustering y reducción de dimensionalidad para tipificar perfiles docentes.
+- **Valores SHAP** — Explicabilidad de modelos de caja negra para cuantificar el impacto marginal en pesos mexicanos de cada característica.
