@@ -73,7 +73,7 @@ Al revisar el proyecto se podrá:
 ## Requisitos previos
 
 - Entorno de desarrollo en Python (Jupyter Notebooks / VS Code).
-- Librerías principales: pandas, numpy, statsmodels, scikit-learn, matplotlib, seaborn.
+- Librerías principales: `pandas`, `numpy`, `statsmodels`, `scikit-learn`, `matplotlib`, `seaborn`.
 
 
 ## Conceptos clave
