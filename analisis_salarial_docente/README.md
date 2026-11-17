@@ -18,6 +18,10 @@ Este repositorio contiene el desarrollo completo del proyecto de análisis econo
 - Estimación de la Ecuación de Mincer mediante regresión lineal múltiple con errores robustos (statsmodels).
 - Análisis econométrico de los retornos a la escolaridad, la experiencia laboral y evaluación de diferencias salariales.
 
+**`02.1_econometria_y_brecha_genero.ipynb`** 
+- Evaluación de robustez y *benchmark* no lineal mediante *Random Forest Regressor* utilizando el dataset con varianza salarial no controlada.
+- Extracción y análisis de importancia de variables (*feature importance*) para contrastar la estabilidad de los predictores clave frente al modelo econométrico lineal.
+
 **`03_modelos_predictivos.ipynb`**
 - Entrenamiento y evaluación de un *benchmark* de múltiples modelos de Machine Learning (Regresión Ridge, Árboles de Decisión, Random Forest y Gradient Boosting con pérdida de Huber).
 - Análisis comparativo de métricas de desempeño ($R^2$ y MedAE).
@@ -31,7 +35,9 @@ Este repositorio contiene el desarrollo completo del proyecto de análisis econo
 - Generación de gráficos de resumen (*beeswarm*), importancia absoluta promedio y descomposición individual de predicciones en pesos mexicanos (MXN).
 
 ### Material de apoyo y Reportes
+
 **`Análisis Predictivo Docente (8).pdf`** - Presentación teórica y preliminar antes de obtener resultados concretos.
+
 **`Proyecto final_BD_Advance6.pdf`** — Reporte técnico final y científico integrando toda la arquitectura analítica.
 
 
@@ -58,9 +64,10 @@ Al revisar el proyecto se podrá:
 1. `00_cruce_enoe.ipynb` — Unificación de las fuentes de datos crudos.
 2. `01_limpieza_y_anomalias.ipynb` — Depuración de la muestra y eliminación de anomalías con *Isolation Forest*.
 3. `02_econometria_y_brecha_genero.ipynb` — Análisis econométrico e inferencial clásico (Ecuación de Mincer).
-4. `03_modelos_predictivos.ipynb` — Experimentación con Machine Learning y *benchmark* de modelos.
-5. `04_clustering_perfiles.ipynb` — Segmentación de perfiles docentes (*K-Means* y *PCA*).
-6. `05_interpretabilidad_shap.ipynb` — Explicabilidad y análisis de impacto con valores SHAP.
+4. `02.1_econometria_y_brecha_genero.ipynb`  — Evaluación de robustez y *benchmark* no lineal mediante *Random Forest* frente al modelo lineal.
+5. `03_modelos_predictivos.ipynb` — Experimentación con Machine Learning y *benchmark* de modelos.
+6. `04_clustering_perfiles.ipynb` — Segmentación de perfiles docentes (*K-Means* y *PCA*).
+7. `05_interpretabilidad_shap.ipynb` — Explicabilidad y análisis de impacto con valores SHAP.
 
 
 ## Requisitos previos
