@@ -1,0 +1,194 @@
+\documentclass[10pt,twocolumn,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{geometry}
+\geometry{margin=2cm}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{amsmath,amssymb}
+\usepackage{hyperref}
+\usepackage{lipsum}
+
+\title{\textbf{Análisis Inferencial Riguroso de Estructuras Salariales y Factores Determinantes del Personal Docente en México Mediante Microdatos de la ENOE}}
+\author{Fernanda Aurora Samantha González Martínez, Johan David Patiño Casatrillon, \\ Jose Pablo Hernández Hernández, Hoshi Esmeralda Martínez Belmonte \\\textit{Universidad de Guadalajara - CUGDL} \\ \small Probabilidad y Estadística II -- Licenciatura en Ciencia de Datos}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+El presente trabajo de investigación analiza la estructura de compensaciones económicas del personal docente en México utilizando microdatos oficiales de la Encuesta Nacional de Ocupación y Empleo (ENOE) elaborada por el INEGI. Para validar empíricamente las teorías de capital humano y mercado laboral, se implementan y resuelven computacionalmente tres pruebas de hipótesis estadísticas fundamentales sin el uso de paqueterías preconfiguradas: un análisis de varianza (ANOVA) de una vía para contrastar los ingresos por nivel de escolaridad, una prueba pareada con rango de tolerancia para evaluar el ajuste entre salarios reales y estimados mediante modelos econométricos, y una prueba de dispersión basada en el cociente de varianzas para examinar la heterogeneidad salarial entre géneros. Los resultados proporcionan evidencia cuantitativa sobre el rendimiento de la escolaridad, la capacidad predictiva de las especificaciones y la disparidad en la variabilidad salarial, discutiendo rigurosamente los riesgos asociados a los errores de tipo I y tipo II en la toma de decisiones.
+\end{abstract}
+
+\section{I. Introducción}
+El estudio empírico de los mercados laborales constituye una de las aplicaciones más relevantes de la inferencia estadística moderna. En particular, el sector educativo en México presenta características heterogéneas en términos de inserción laboral, niveles de preparación académica y esquemas de remuneración. La comprensión de estos fenómenos requiere metodologías cuantitativas que permitan contrastar hipótesis formales sobre las fuentes de variación salarial.
+
+Para este estudio, se ha seleccionado de manera específica el segundo trimestre de 2026 (2T2026) de los microdatos de la Encuesta Nacional de Ocupación y Empleo (ENOE). La elección de este periodo único responde a criterios metodológicos rigurosos exigidos para la modelación econométrica: permite contar con una instantánea transversal reciente, homogénea y representativa de las condiciones laborales del personal docente en el país, neutralizando al mismo tiempo las distorsiones estacionales típicas de otros periodos (tales como los ajustes presupuestales de cierre de año o el inicio de ciclos escolares). Este recorte temporal garantiza que la variabilidad observada en los ingresos y las condiciones de empleo refleje diferencias estructurales del mercado y del capital humano, y no fluctuaciones temporales de corto plazo.
+
+Utilizando los microdatos depurados de esta fuente (eliminando anomalías mediante \textit{Isolation Forest}), este reporte examina los determinantes clave de los ingresos del personal docente. El análisis se fundamenta en la teoría del capital humano de Mincer, complementada con pruebas de hipótesis estadísticas robustas implementadas mediante rutinas algorítmicas propias. El propósito central es determinar si las diferencias observadas en las compensaciones responden a patrones estructurales significativos o al azar muestral.
+
+\section{II. Planteamiento del Problema}
+El planteamiento del problema se centra en evaluar la existencia de diferencias estadísticamente significativas en tres dimensiones críticas del mercado laboral docente: el nivel de instrucción formal, la precisión predictiva de los modelos de ingresos y la estabilidad de la dispersión salarial entre hombres y mujeres.
+
+Para garantizar la validez inferencial, las hipótesis no se formulan de manera genérica, sino contextualizadas estrictamente en la realidad de la base de datos procesada.
+
+\subsection{1. Hipótesis para la Prueba ANOVA (Escolaridad)}
+Se busca determinar si el grado máximo de estudios influye de manera determinante en la media de los ingresos ocupacionales reportados por los docentes.
+\begin{itemize}
+    \item \textbf{Hipótesis Nula ($H_0$):} Las medias salariales poblacionales son estrictamente iguales en todos los niveles de escolaridad registrados en el sistema educativo analizado.
+    \item \textbf{Hipótesis Alternativa ($H_1$):} Al menos un nivel de escolaridad presenta una media salarial poblacional estadísticamente diferente al resto de los grupos.
+\end{itemize}
+
+\subsection{2. Hipótesis para la Prueba Pareada con Rango Tolerable}
+Se evalúa la cercanía entre los ingresos reales percibidos y los salarios estimados mediante funciones de ganancias.
+\begin{itemize}
+    \item \textbf{Hipótesis Nula ($H_0$):} La diferencia absoluta media entre los salarios reales y los predichos se encuentra dentro de un margen tolerable aceptable de $\pm 2,000.00$ pesos ($|\mu_d| \le 2000.0$).
+    \item \textbf{Hipótesis Alternativa ($H_1$):} La diferencia absoluta media real rebasa el umbral de tolerancia establecido, indicando desviación sistemática del modelo ($|\mu_d| > 2000.0$).
+\end{itemize}
+
+\subsection{3. Hipótesis para la Prueba de Dispersión Salarial por Género}
+Se examina la variabilidad en la distribución de los ingresos monetarios entre docentes masculinos y femeninos.
+\begin{itemize}
+    \item \textbf{Hipótesis Nula ($H_0$):} La dispersión y variabilidad de los salarios entre hombres y mujeres es idéntica ($\sigma_h^2 = \sigma_m^2$).
+    \item \textbf{Hipótesis Alternativa ($H_1$):} La dispersión y variabilidad salarial difiere de manera significativa entre géneros ($\sigma_h^2 \neq \sigma_m^2$).
+\end{itemize}
+
+\section{III. Metodología y Desarrollo Algorítmico}
+El procesamiento se estructuró a partir de la base depurada de docentes (eliminando anomalías mediante \textit{Isolation Forest}). Los algoritmos de inferencia se programaron utilizando funciones numéricas basadas en distribuciones estadísticas teóricas.
+
+\subsection{Prueba ANOVA de Una Vía}
+Para $k$ tratamientos (niveles de escolaridad) y $N$ observaciones totales, se descompone la Suma de Cuadrados Total ($\text{SST}$) en la suma entre grupos ($\text{SSA}$) y la suma del error ($\text{SSE}$). El estadístico de prueba se define como:
+\begin{equation}
+    F = \frac{\text{SSA} / (k - 1)}{\text{SSE} / (N - k)} = \frac{S_1^2}{S^2}
+\end{equation}
+bajo un nivel de significancia $\alpha = 0.05$.
+
+\subsection{Prueba Pareada con Rango de Tolerancia}
+A partir de las diferencias individuales $d_i = \text{Real}_i - \text{Predicho}_i$, el estadístico $t$ ajustado se computa como:
+\begin{equation}
+    t_{\text{calc}} = \frac{|\bar{d}| - \Delta}{s_d / \sqrt{n}}
+\end{equation}
+donde $\Delta = 2000.0$ representa la tolerancia permitida y $s_d$ la desviación estándar muestral de las diferencias.
+
+\subsection{Prueba de Razón de Varianzas}
+Para contrastar la homogeneidad de la dispersión salarial entre hombres ($n_1$) y mujeres ($n_2$), se calcula el estadístico $F$ muestral:
+\begin{equation}
+    F_{\text{calc}} = \frac{s_{\text{mujeres}}^2}{s_{\text{hombres}}^2}
+\end{equation}
+evaluado en una región de rechazo bilateral con grados de libertad $v_1 = n_2 - 1$ y $v_2 = n_1 - 1$.
+
+\section{IV. Resultados Cuantitativos}
+La ejecución de los algoritmos estadísticos sobre la muestra consolidada arrojó los siguientes resultados empíricos:
+
+\begin{itemize}
+    \item \textbf{ANOVA de Escolaridad ($N = 1142$):} 
+    
+    Se obtuvieron grados de libertad $v_1 = 6$ y $v_2 = 1135$. 
+    La Suma de Cuadrados Total fue $\text{SST} = 38,758,765,298.14$.
+    La suma entre grupos $\text{SSA} = 2,311,127,175.76 $ y la del error $\text{SSE} = 36,447,638,122.38 $. 
+    El estadístico $F_{\text{calc}} = 11.9950$ superó el valor crítico $F_{\text{crit}} = 2.1083$ ($\alpha = 0.05$), por lo que se \textbf{rechaza $H_0$}.
+    \item \textbf{Prueba Pareada ($n = 1147$):} 
+    
+    La media de las diferencias fue $\bar{d} = 899.6202$ con un error estándar reducido. El estadístico calculado fue $t_{\text{calc}} = -7.0452$, el cual es menor que el crítico tabular $\pm 1.9600$. En consecuencia, \textbf{no se rechaza $H_0$}, validando que el error se mantiene dentro del rango tolerable.
+    \item \textbf{Prueba de Dispersión ($n_h=397, n_m=750$):} 
+    
+    Hombres con varianza $\text{Var}_h = 33,560,915.02$ y Mujeres con $\text{Var}_m = 33,952,921.79$. El cociente arrojó $F_{\text{calc}} = 1.0117$, cayendo dentro del intervalo crítico bilateral $[0.8395, 1.1913]$, lo que conduce a \textbf{ no rechazar $H_0$}.
+\end{itemize}
+
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\linewidth]{anova_escolaridad_boxplot.png}
+    \caption{Distribución del ingreso ocupacional según el nivel de escolaridad reportado por el personal docente en la ENOE.}
+    \label{fig:anova}
+\end{figure}
+
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\linewidth]{pareada_real_vs_pred.png}
+    \caption{Gráfica de dispersión comparando los salarios reales frente a las predicciones econométricas del modelo Mincer.}
+    \label{fig:pareada}
+\end{figure}
+    
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\linewidth]{dispersion_genero.png}
+    \caption{Funciones de densidad estimada de los ingresos salariales segmentadas por género (Prueba de Dispersión).}
+    \label{fig:dispersion}
+\end{figure}
+
+
+\begin{table*}[t]
+\centering
+\caption{Resumen analítico de las pruebas de hipótesis evaluadas}
+\small
+\begin{tabular}{lccc}
+\toprule
+\textbf{Prueba Estadística} & \textbf{Estadístico} & \textbf{Valor Crítico} & \textbf{Decisión ($\alpha=0.05$)} \\
+\midrule
+ANOVA (Escolaridad) & $F = 11.99$ & $2.10$ & Rechaza $H_0$ \\
+Pareada (Modelo) & $t = -7.04$ & $\pm 1.96$ & No rechaza $H_0$ \\
+Dispersión (Género) & $F = 1.01$ & $[0.84, 1.19]$ & No rechaza $H_0$ \\
+\bottomrule
+\end{tabular}
+\label{tab:resumen}
+\end{table*}
+
+\section{V. Discusión y Análisis de Riesgos (Errores Tipo I y II)}
+La interpretación de los resultados estadísticos exige un análisis riguroso de los riesgos de decisión bajo incertidumbre.
+
+\subsection{Análisis de Errores y Riesgos en la Prueba ANOVA (Escolaridad)}
+Al rechazar la hipótesis nula del ANOVA ($F_{\text{calc}} = 11.99$), se establece que el nivel de escolaridad influye significativamente en la media de los ingresos salariales. 
+\begin{itemize}
+    \item \textbf{Error Tipo I ($\alpha$):} Consistiría en concluir falsamente que la escolaridad genera diferencias en las medias salariales cuando en la población real no existe tal efecto. \textit{Riesgo en la predicción institucional:} Asignar primas salariales o reestructuraciones presupuestales basadas en credenciales académicas ficticias, inflando el gasto público o corporativo en nómina sin un retorno real en productividad.
+    \item \textbf{Error Tipo II ($\beta$):} Implicaría no detectar diferencias salariales reales entre los niveles educativos (manteniendo $H_0$ por error muestral). \textit{Riesgo en la predicción institucional:} Subestimar el retorno social y económico de la inversión en capital humano, desincentivando la profesionalización docente y perpetuando esquemas de compensación obsoletos.
+\end{itemize}
+
+\subsection{Análisis de Errores y Riesgos en la Prueba Pareada (Modelo Econométrico)}
+La prueba pareada evalúa si el error absoluto medio de predicción del modelo salarial se mantiene dentro del umbral tolerable de $\pm 2,000.00$ pesos ($t_{\text{calc}} = -7.04$, no se rechaza $H_0$).
+\begin{itemize}
+    \item \textbf{Error Tipo I ($\alpha$):} Implicaría rechazar falsamente $H_0$, concluyendo que el modelo econométrico excede el margen de tolerancia tolerable cuando en realidad las predicciones promedio se ajustan al umbral establecido. \textit{Riesgo en la predicción:} Desechar o recalibrar innecesariamente un modelo predictivo robusto, generando costos operativos injustificados y retrasos en la planeación presupuestal.
+    \item \textbf{Error Tipo II ($\beta$):} Implicaría no rechazar $H_0$ siendo falsa, es decir, asumir que el modelo predice adecuadamente dentro del margen de $\pm 2,000$ pesos cuando el sesgo sistemático real supera dicho límite. \textit{Riesgo en la predicción:} Confiar ciegamente en estimaciones salariales sesgadas para la proyección financiera, provocando déficits presupuestales graves o una subasignación crítica de recursos en la nómina docente.
+\end{itemize}
+
+\subsection{Análisis de Errores y Riesgos en la Prueba de Dispersión (Homogeneidad Salarial)}
+Dado que el estadístico de razón de varianzas arrojó $F_{\text{calc}} = 1.0117$, situándose dentro del intervalo crítico bilateral $[0.8395, 1.1913]$, \textbf{no se rechaza $H_0$}, confirmando que la dispersión de los ingresos es homogénea entre géneros.
+\begin{itemize}
+    \item \textbf{Error Tipo I ($\alpha$):} Representaría rechazar falsamente $H_0$ declarando una diferencia de varianzas salariales entre hombres y mujeres que no existe en la población. \textit{Riesgo en la predicción:} Implementar acciones correctivas o políticas normativas sobre disparidades de dispersión ficticias, generando sobrecostos administrativos y diagnósticos erróneos de equidad.
+    \item \textbf{Error Tipo II ($\beta$):} Implicaría no detectar una heterogeneidad real en la dispersión de los ingresos debido a un enmascaramiento muestral. \textit{Riesgo en la predicción:} Ocultar asimetrías secundarias en la distribución de compensaciones, impidiendo focalizar apoyos en los sectores docentes con mayor vulnerabilidad distributiva.
+\end{itemize}
+
+\subsection{Coherencia entre la Dispersión Global y los Modelos Multivariables}
+Un aspecto metodológico fundamental que surge al contrastar la prueba de dispersión univariada con los modelos econométricos y de Machine Learning (como las funciones de Mincer) es la aparente disyuntiva entre la homogeneidad de la varianza salarial por género y la existencia de coeficientes diferenciados en los modelos predictivos. 
+
+Lejos de representar un conflicto, ambos resultados evalúan dimensiones complementarias del mercado laboral:
+\begin{itemize}
+    \item \textbf{Prueba de Dispersión (Razón de Varianzas):} Evalúa exclusivamente la variabilidad global o dispersión interna ($\sigma^2$) de los ingresos respecto a la media de cada grupo, concluyendo que la dispersión salarial es estadísticamente equivalente entre hombres y mujeres ($F_{\text{calc}} = 1.0117$).
+    \item \textbf{Modelos Multivariables y de Aprendizaje Automático:} Estiman la media condicional controlando simultáneamente múltiples factores (como horas laboradas, experiencia y años de escolaridad) o capturan interacciones no lineales. 
+\end{itemize}
+En consecuencia, es metodológicamente consistente que la dispersión global de los salarios sea homogénea en el sector docente, mientras que los algoritmos predictivos logren capturar matices y efectos marginales específicos al ponderar de forma conjunta las características del capital humano.
+
+\section{VI. Conclusiones}
+Las pruebas de hipótesis implementadas confirman que la estructura salarial del personal docente en México responde de manera significativa a la cualificación académica (ANOVA). Asimismo, los modelos econométricos presentan un ajuste aceptable dentro de los márgenes de tolerancia establecidos (Prueba Pareada). Finalmente, la evidencia indica que la variabilidad salarial es homogénea entre géneros, aportando elementos cuantitativos esenciales para la planeación educativa y laboral.
+
+\begin{thebibliography}{9}
+
+\bibitem{inegi2026enoe}
+INEGI. (2026). \emph{Microdatos de la Encuesta Nacional de Ocupación y Empleo (ENOE): Cuestionarios SDEMT y COE1T} [Base de datos]. Instituto Nacional de Estadística y Geografía.
+
+\bibitem{inegi2026sinco}
+INEGI. (2026). \emph{Sistema Nacional de Clasificación de Ocupaciones (SINCO)}. Instituto Nacional de Estadística y Geografía.
+
+\bibitem{hastie2009elements}
+Hastie, T., Tibshirani, R., \& Friedman, J. (2009). \emph{The elements of statistical learning: Data mining, inference, and prediction} (2nd ed.). Springer.
+
+\bibitem{mincer1974}
+Mincer, J. (1974). \emph{Schooling, experience, and earnings}. National Bureau of Economic Research.
+
+\bibitem{walpole2012}
+Walpole, R. E., Myers, R. H., Myers, S. L., \& Ye, K. (2012). \emph{Probabilidad y estadística para ingeniería y ciencias}. Pearson Educación.
+\end{thebibliography}
+
+\end{document}
