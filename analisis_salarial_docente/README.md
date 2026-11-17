@@ -18,6 +18,10 @@ Este repositorio contiene el desarrollo completo del proyecto de análisis econo
 - Estimación de la Ecuación de Mincer mediante regresión lineal múltiple con errores robustos (statsmodels).
 - Análisis econométrico de los retornos a la escolaridad, la experiencia laboral y evaluación de diferencias salariales.
 
+**`02.1_econometria_y_brecha_genero.ipynb`** 
+- Evaluación de robustez y *benchmark* no lineal mediante *Random Forest Regressor* utilizando el dataset con varianza salarial no controlada.
+- Extracción y análisis de importancia de variables (*feature importance*) para contrastar la estabilidad de los predictores clave frente al modelo econométrico lineal.
+
 **`03_modelos_predictivos.ipynb`**
 - Entrenamiento y evaluación de un *benchmark* de múltiples modelos de Machine Learning (Regresión Ridge, Árboles de Decisión, Random Forest y Gradient Boosting con pérdida de Huber).
 - Análisis comparativo de métricas de desempeño ($R^2$ y MedAE).
@@ -31,7 +35,9 @@ Este repositorio contiene el desarrollo completo del proyecto de análisis econo
 - Generación de gráficos de resumen (*beeswarm*), importancia absoluta promedio y descomposición individual de predicciones en pesos mexicanos (MXN).
 
 ### Material de apoyo y Reportes
+
 **`Análisis Predictivo Docente (8).pdf`** - Presentación teórica y preliminar antes de obtener resultados concretos.
+
 **`Proyecto final_BD_Advance6.pdf`** — Reporte técnico final y científico integrando toda la arquitectura analítica.
 
 
@@ -58,15 +64,16 @@ Al revisar el proyecto se podrá:
 1. `00_cruce_enoe.ipynb` — Unificación de las fuentes de datos crudos.
 2. `01_limpieza_y_anomalias.ipynb` — Depuración de la muestra y eliminación de anomalías con *Isolation Forest*.
 3. `02_econometria_y_brecha_genero.ipynb` — Análisis econométrico e inferencial clásico (Ecuación de Mincer).
-4. `03_modelos_predictivos.ipynb` — Experimentación con Machine Learning y *benchmark* de modelos.
-5. `04_clustering_perfiles.ipynb` — Segmentación de perfiles docentes (*K-Means* y *PCA*).
-6. `05_interpretabilidad_shap.ipynb` — Explicabilidad y análisis de impacto con valores SHAP.
+4. `02.1_econometria_y_brecha_genero.ipynb`  — Evaluación de robustez y *benchmark* no lineal mediante *Random Forest* frente al modelo lineal.
+5. `03_modelos_predictivos.ipynb` — Experimentación con Machine Learning y *benchmark* de modelos.
+6. `04_clustering_perfiles.ipynb` — Segmentación de perfiles docentes (*K-Means* y *PCA*).
+7. `05_interpretabilidad_shap.ipynb` — Explicabilidad y análisis de impacto con valores SHAP.
 
 
 ## Requisitos previos
 
 - Entorno de desarrollo en Python (Jupyter Notebooks / VS Code).
-- Librerías principales: pandas, numpy, statsmodels, scikit-learn, matplotlib, seaborn.
+- Librerías principales: `pandas`, `numpy`, `statsmodels`, `scikit-learn`, `matplotlib`, `seaborn`.
 
 
 ## Conceptos clave
@@ -76,3 +83,21 @@ Al revisar el proyecto se podrá:
 - **Gradient Boosting & Random Forest** — Modelos predictivos avanzados para capturar relaciones no lineales y minimizar el error absoluto mediano.
 - **K-Means y PCA** — Técnicas de clustering y reducción de dimensionalidad para tipificar perfiles docentes.
 - **Valores SHAP** — Explicabilidad de modelos de caja negra para cuantificar el impacto marginal en pesos mexicanos de cada característica.
+
+
+## Estructura de Directorios
+
+**`data/`**
+- Contiene los archivos de microdatos originales (`raw/`) y los conjuntos depurados tras limpezas e uniones (`processed/`).
+
+**`models/`**
+- Almacena los artefactos y modelos entrenados serializados con `joblib`, incluyendo el regresor de ensamble (`rf_regressor.joblib`) y el modelo de segmentación (`kmeans_perfiles.joblib`).
+
+**`notebooks/`**
+- Secuencia completa de desarrollo analítico, desde el cruce de fuentes (`00`) y depuración (`01`), pasando por la econometría de Mincer y el bloque de robustez (`02` y `02.1`), hasta machine learning (`03`), clustering (`04`) y explicabilidad SHAP (`05`).
+
+**`outputs/figures/`**
+- Repositorio central de gráficos exportados de alta resolución (curvas salariales, matrices de importancia de variables, diagramas de caja y resumen SHAP).
+
+**`src/`**
+- Scripts y funciones auxiliares reutilizables para el procesamiento de datos y la automatización de métricas.
