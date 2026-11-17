@@ -1,0 +1,21 @@
+# ============================================================================== 
+# Dependencias para el Proyecto: Análisis Salarial Docente en México (ENOE) 
+# ==============================================================================
+
+# Procesamiento de Datos y Cálculo Numérico 
+pandas>=2.0.0 
+numpy>=1.24.0 
+scipy>=1.10.0 
+
+# Modelado Econométrico y Pruebas Estadísticas 
+statsmodels>=0.14.0 
+
+# Aprendizaje Automático y Clustering 
+scikit-learn>=1.3.0 
+
+# Explicabilidad e Interpretabilidad (Valores SHAP) 
+shap>=0.42.0 
+
+# Visualización Gráfica 
+matplotlib>=3.7.0 
+seaborn>=0.12.0
