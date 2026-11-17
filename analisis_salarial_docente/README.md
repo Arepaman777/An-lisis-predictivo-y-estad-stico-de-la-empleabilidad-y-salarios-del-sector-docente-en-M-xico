@@ -83,3 +83,21 @@ Al revisar el proyecto se podrá:
 - **Gradient Boosting & Random Forest** — Modelos predictivos avanzados para capturar relaciones no lineales y minimizar el error absoluto mediano.
 - **K-Means y PCA** — Técnicas de clustering y reducción de dimensionalidad para tipificar perfiles docentes.
 - **Valores SHAP** — Explicabilidad de modelos de caja negra para cuantificar el impacto marginal en pesos mexicanos de cada característica.
+
+
+## Estructura de Directorios
+
+**`data/`**
+- Contiene los archivos de microdatos originales (`raw/`) y los conjuntos depurados tras limpezas e uniones (`processed/`).
+
+**`models/`**
+- Almacena los artefactos y modelos entrenados serializados con `joblib`, incluyendo el regresor de ensamble (`rf_regressor.joblib`) y el modelo de segmentación (`kmeans_perfiles.joblib`).
+
+**`notebooks/`**
+- Secuencia completa de desarrollo analítico, desde el cruce de fuentes (`00`) y depuración (`01`), pasando por la econometría de Mincer y el bloque de robustez (`02` y `02.1`), hasta machine learning (`03`), clustering (`04`) y explicabilidad SHAP (`05`).
+
+**`outputs/figures/`**
+- Repositorio central de gráficos exportados de alta resolución (curvas salariales, matrices de importancia de variables, diagramas de caja y resumen SHAP).
+
+**`src/`**
+- Scripts y funciones auxiliares reutilizables para el procesamiento de datos y la automatización de métricas.
